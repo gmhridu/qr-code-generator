@@ -21,3 +21,21 @@ qrText.addEventListener("keydown", function (event) {
     generateQR();
   }
 });
+
+document.getElementById("facebook").addEventListener("click", function () {
+  window.open("https://www.facebook.com/sharer/sharer.php?u=#", "_blank");
+});
+
+document.getElementById("instagram").addEventListener("click", function () {
+  window.open(
+    "https://instagram.com/intent/tweet?url=#&text=Check out this QR code!",
+    "_blank"
+  );
+});
+
+document.getElementById("whatsapp").addEventListener("click", function () {
+  window.open(
+    "https://www.linkedin.com/shareArticle?url=#&title=QR Code&summary=Check out this QR code!",
+    "_blank"
+  );
+});
