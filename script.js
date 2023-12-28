@@ -42,34 +42,30 @@ document.getElementById("whatsapp").addEventListener("click", function () {
   );
 });
 
-
 function downloadImage() {
-  // Get the image element
   var img = document.getElementById("qrImage");
 
-  // Get the image source URL
-  var imageUrl = img.src;
+  // Check if the image source is not empty and it's fully loaded
+  if (img.src && img.complete) {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
 
-  // console.log(imageUrl);
+    canvas.width = img.width;
+    canvas.height = img.height;
 
-  // Fetch the image
-  fetch(imageUrl)
-    .then((response) => response.blob())
-    .then((blob) => {
-      // Convert the blob to a data URL
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        // Create a temporary anchor element
-        var a = document.createElement("a");
-        a.href = reader.result;
+    ctx.drawImage(img, 0, 0);
 
-        // Set the download attribute with a desired file name
-        a.download = "downloaded_image.jpg";
+    var dataUrl = canvas.toDataURL("image/jpeg");
 
-        // Trigger a click on the anchor element to start the download
-        a.click();
-      };
-      reader.readAsDataURL(blob);
-    })
-    .catch((error) => console.error("Error fetching image:", error));
+    var a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "qr_code_image.jpg";
+
+    a.click();
+  } else {
+    // If the image is not yet fully loaded, wait for it to load and then download
+    img.onload = function () {
+      downloadImage(); // Call the download function again once the image is fully loaded
+    };
+  }
 }
