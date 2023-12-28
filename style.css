@@ -89,7 +89,6 @@ body {
   justify-content: center;
 }
 
-
 #facebook {
   background-color: #3b5998;
 }
@@ -115,7 +114,6 @@ body {
 #whatsapp:hover {
   background-color: #128c7e;
 }
-
 
 .social-icon {
   display: inline-block;
@@ -143,7 +141,6 @@ body {
     font-size: 14px;
   }
 }
-
 
 @media (max-width: 480px) {
   .container {
